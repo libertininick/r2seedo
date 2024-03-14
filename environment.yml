@@ -1,0 +1,26 @@
+# enviornment.yml
+name: r2seedo-default
+channels:
+  - pytorch
+  - conda-forge
+  - nodefaults
+dependencies:
+  - coverage
+  - ffmpeg
+  - gymnasium-box2d
+  - ipykernel
+  - ipywidgets
+  - matplotlib
+  - pandas
+  - pip
+  - pytest
+  - pytest-check
+  - python >=3.11,<3.12
+  - pytorch >= 2.0.0
+  - pyvirtualdisplay
+  - stable-baselines3
+  - swig
+  - pip:
+    - huggingface-sb3
+platforms:
+  - linux-64
