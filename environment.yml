@@ -2,11 +2,11 @@
 name: r2seedo-default
 channels:
   - pytorch
+  - nvidia
   - conda-forge
   - nodefaults
 dependencies:
   - coverage
-  - ffmpeg
   - gymnasium-box2d
   - ipykernel
   - ipywidgets
@@ -15,9 +15,9 @@ dependencies:
   - pip
   - pytest
   - pytest-check
-  - python >=3.11,<3.12
+  - python >= 3.11
   - pytorch >= 2.0.0
-  - pyvirtualdisplay
+  - pytorch-cuda >= 12.*
   - stable-baselines3
   - swig
   - pip:
