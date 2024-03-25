@@ -1,5 +1,4 @@
-# enviornment.yml
-name: r2seedo-default
+# environment.yml
 channels:
   - pytorch
   - nvidia
@@ -7,6 +6,7 @@ channels:
   - nodefaults
 dependencies:
   - coverage
+  - cryptography
   - dvc
   - gymnasium-box2d
   - huggingface_hub
@@ -18,9 +18,8 @@ dependencies:
   - pytest
   - pytest-check
   - python >= 3.11
+  - python-dotenv
   - pytorch >= 2.0.0
   - pytorch-cuda >= 12.*
   - stable-baselines3
   - swig
-platforms:
-  - linux-64

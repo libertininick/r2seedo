@@ -87,6 +87,7 @@ command = "conda"
 environment-file = "environment.yml"
 
 [tool.hatch.envs.default.scripts]
+update = "conda env update --file environment.yml --prune"
 
 # Test Evironment Configuration
 [tool.hatch.envs.test]

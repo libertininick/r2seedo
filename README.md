@@ -4,7 +4,9 @@ R2 See, Do - a journey in deep reinforcement learning.
 
 ## Table of contents
 
+- [Notebooks](notebooks/README.md)
 - [Project Setup](#project-setup)
+- [Update Environment](#update-environment)
 - [Running Tests](#running-tests)
 
 ## Project Setup
@@ -31,6 +33,17 @@ inside of a virtual environment managed by `hatch`.
 ```sh
 cd r2seedo
 hatch env create
+```
+
+[Table of Contents](#table-of-contents)
+
+## Update Environment
+
+If you make changes to [environment.yml](environment.yml) and want to update the default
+environment:
+
+```sh
+hatch run default:update
 ```
 
 [Table of Contents](#table-of-contents)
