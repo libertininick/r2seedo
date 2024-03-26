@@ -12,6 +12,7 @@ dependencies:
   - huggingface_hub
   - ipykernel
   - ipywidgets
+  - joblib
   - matplotlib
   - pandas
   - pip
