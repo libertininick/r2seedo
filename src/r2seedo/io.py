@@ -202,6 +202,15 @@ def save_private_key(
     password: str | bytes | None
         Password for encrypting private key.
         NOTE: If password is `str`, it will be encoded to `bytes` using UTF-8.
+
+    Example
+    -------
+    >>> from tempfile import TemporaryDirectory
+    >>> from r2seedo.io import generate_keypair, save_private_key
+    >>> keypair = generate_keypair()
+    >>> with TemporaryDirectory() as temp_dir:
+    ...     key_path = f"{temp_dir}/private.pem"
+    ...     save_private_key(keypair.private, key_path, password="password")
     """
     # Define encryption algorithm based on password
     encryption_algorithm: (
