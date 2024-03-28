@@ -56,11 +56,6 @@ source = [
     "src",
     "tests",
 ]
-exclude_lines = [
-  "no cov",
-  "if __name__ == .__main__.:",
-  "if TYPE_CHECKING:",
-]
 
 [tool.coverage.paths]
 r2seedo = ["src/r2seedo", "*/r2seedo/src/r2seedo"]
@@ -88,23 +83,10 @@ environment-file = "environment.yml"
 
 [tool.hatch.envs.default.scripts]
 update = "conda env update --file environment.yml --prune"
-
-# Test Evironment Configuration
-[tool.hatch.envs.test]
-type = "conda"
-command = "conda"
-environment-file = "environment.yml"
-
-[tool.hatch.envs.test.scripts]
 test = "pytest"
-test-cov = "coverage run -m pytest"
-cov-report = [
-  "- coverage combine",
+test-cov = [
+  "coverage run -m pytest",
   "coverage report",
-]
-cov = [
-  "test-cov",
-  "cov-report",
 ]
 
 # Liniting evironment configuration

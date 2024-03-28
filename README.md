@@ -50,10 +50,10 @@ hatch run default:update
 
 ## Running Tests
 
-Run tests and coverage report across the full environment matrix using `hatch`
+Run tests and coverage report using `hatch`
 
 ```sh
-hatch run test:cov
+hatch run default:test-cov
 ```
 
 [Table of Contents](#table-of-contents)
