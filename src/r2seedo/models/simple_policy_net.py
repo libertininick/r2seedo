@@ -147,6 +147,11 @@ class SimplePolicyNet(nn.Module):
 
         return action.cpu().numpy(), state
 
+    @property
+    def device(self) -> torch.device:
+        """Get the device of the model."""
+        return next(self.parameters()).device
+
 
 def compute_loss(
     model: SimplePolicyNet, observations: Tensor, actions: Tensor, weights: Tensor
