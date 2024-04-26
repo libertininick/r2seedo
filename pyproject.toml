@@ -100,7 +100,6 @@ path = "src/r2seedo/__init__.py"
 python = "3.11"
 type = "conda"
 command = "mamba"
-uv = true
 dependencies = ["r2seedo[dev]"]
 
 [tool.hatch.envs.default.scripts]
@@ -125,7 +124,6 @@ lint = [
 python = "3.11"
 type = "conda"
 command = "mamba"
-uv = true
 dependencies = [
   "r2seedo[jupyter]",
   "gymnasium[atari,accept-rom-license,other]",
@@ -135,18 +133,26 @@ dependencies = [
 python = "3.11"
 type = "conda"
 command = "mamba"
-uv = true
 dependencies = [
   "r2seedo[jupyter]",
   "swig",
   "gymnasium[box2d,other]",
 ]
 
+[tool.hatch.envs.gym-classic-control]
+python = "3.11"
+type = "conda"
+command = "mamba"
+dependencies = [
+  "r2seedo[jupyter]",
+  "swig",
+  "gymnasium[classic-control,other]",
+]
+
 [tool.hatch.envs.gym-toy_text]
 python = "3.11"
 type = "conda"
 command = "mamba"
-uv = true
 dependencies = [
   "r2seedo[jupyter]",
   "gymnasium[toy_text,other]",
