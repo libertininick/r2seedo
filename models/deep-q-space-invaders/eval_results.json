@@ -1,0 +1,6 @@
+{
+  "env_id": "SpaceInvadersNoFrameskip-v4",
+  "num_episodes": 30,
+  "mean_reward": 193.33333333333334,
+  "std_reward": 150.7941938169003
+}

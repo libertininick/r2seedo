@@ -1,0 +1,9 @@
+{
+  "env_id": "FrozenLake-v1",
+  "map_name": "4x4",
+  "is_slippery": true,
+  "num_episodes": 100,
+  "mean_reward": 0.75,
+  "std_reward": 0.4330127018922193,
+  "eval_datetime": "2024-04-07T13:29:45.128562"
+}

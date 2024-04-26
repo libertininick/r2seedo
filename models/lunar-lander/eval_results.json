@@ -1,0 +1,6 @@
+{
+  "env_id": "LunarLander-v2",
+  "num_episodes": 30,
+  "mean_reward": 250.57307899999998,
+  "std_reward": 16.058145493508775
+}

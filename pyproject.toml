@@ -1,0 +1,243 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "r2seedo"
+dynamic = ["version"]
+description = "R2 See, Do - a journey in deep reinforcement learning."
+readme = "README.md"
+requires-python = ">=3.11,<3.12"  # gymnasium requires python 3.11
+license = "MIT"
+keywords = []
+authors = [
+  { name = "libertininick", email = "libertini.nick@gmail.com" },
+]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: Implementation :: CPython",
+  "Programming Language :: Python :: Implementation :: PyPy",
+]
+dependencies = [
+  "cryptography",
+  "gymnasium",
+  "huggingface_hub",
+  "joblib",
+  "msgspec",
+  "optuna",
+  "pandas>=2.0.0",
+  "python-dotenv",
+  "scipy",
+  "stable-baselines3",
+  "torch>=2.0.0",
+]
+
+[project.optional-dependencies]
+test = [
+  "coverage[toml]>=6.5",
+  "pytest",
+  "pytest-check",
+]
+lint = [
+  "black[jupyter]",
+  "mypy",
+  "ruff",
+]
+jupyter = [
+  "ipykernel",
+  "ipywidgets",
+  "matplotlib",
+]
+dev = [
+  "r2seedo[lint,test]",
+  "dvc",
+]
+
+
+[project.urls]
+Documentation = "https://github.com/libertininick/r2seedo#readme"
+Source = "https://github.com/libertininick/r2seedo/src/r2seedo"
+
+
+# Tool Config
+# Black formatting configuration
+[tool.black]
+target-version = ["py311"]
+line-length = 88
+
+# Test converage configuration
+[tool.coverage.run]
+source_pkgs = ["r2seedo", "tests"]
+branch = true
+data_file = "build/.coverage"
+source = [
+    "src",
+    "tests",
+]
+
+[tool.coverage.paths]
+r2seedo = ["src/r2seedo", "*/r2seedo/src/r2seedo"]
+tests = ["tests", "*/r2seedo/tests"]
+
+[tool.coverage.report]
+exclude_also = [
+    "def __repr__"
+]
+fail_under = 80
+precision = 1
+show_missing = true
+skip_covered = true
+skip_empty = true
+
+# Hatch configuration
+[tool.hatch.version]
+path = "src/r2seedo/__init__.py"
+
+# Default evironment configuration
+[tool.hatch.envs.default]
+python = "3.11"
+type = "conda"
+command = "mamba"
+uv = true
+dependencies = ["r2seedo[dev]"]
+
+[tool.hatch.envs.default.scripts]
+test = "pytest"
+test-cov = [
+  "coverage run -m pytest",
+  "coverage report",
+]
+typing = "mypy --install-types --non-interactive {args:src tests}"
+fmt = [
+  "black {args:.}",
+  "ruff check --fix {args:.}",
+  "style",
+]
+lint = [
+  "fmt",
+  "typing",
+]
+
+# gym evironment configurations
+[tool.hatch.envs.gym-atari]
+python = "3.11"
+type = "conda"
+command = "mamba"
+uv = true
+dependencies = [
+  "r2seedo[jupyter]",
+  "gymnasium[atari,accept-rom-license,other]",
+]
+
+[tool.hatch.envs.gym-box2d]
+python = "3.11"
+type = "conda"
+command = "mamba"
+uv = true
+dependencies = [
+  "r2seedo[jupyter]",
+  "swig",
+  "gymnasium[box2d,other]",
+]
+
+[tool.hatch.envs.gym-toy_text]
+python = "3.11"
+type = "conda"
+command = "mamba"
+uv = true
+dependencies = [
+  "r2seedo[jupyter]",
+  "gymnasium[toy_text,other]",
+]
+
+
+# MyPy configuration
+[tool.mypy]
+python_version = "3.11"
+cache_dir = "./build/.mypy_cache"
+disallow_untyped_defs = true
+ignore_missing_imports = true
+pretty = true
+show_column_numbers = true
+show_error_context = true
+warn_unreachable = true
+
+# Pytest configuration
+[tool.pytest.ini_options]
+addopts = "-rf --doctest-modules --doctest-continue-on-failure --strict-markers"
+cache_dir = "./build/pytest"
+console_output_style = "progress"
+filterwarnings = [
+  "ignore::DeprecationWarning",
+  "ignore:Default grid_sample and affine_grid behavior has changed to align_corners=False *:UserWarning",
+]
+markers = [
+  "slow",
+]
+minversion = "6.0"
+testpaths = [
+  "src",
+  "tests",
+]
+
+# Ruff configuration
+[tool.ruff]
+target-version = "py312"  # python version of code
+include = ["*.py", "*.pyi", "**/pyproject.toml", "*.ipynb"]
+line-length = 88  # set max line length 
+indent-width = 4
+cache-dir = "./build/.ruff_cache"
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"
+
+[tool.ruff.lint]
+select = [
+  "A",        # flake8-builtins
+  "ANN",      # flake8-annotations
+  "ARG",      # flake8-unused-arguments
+  "B",        # flake8-bugbear 
+  "C4",       # flake8-comprehensions 
+  "C9",       # max-complexity
+  "D",        # pydocstyle
+  "E", "W",   # pycodestyle 
+  "E501",     # `line-too-long` rule
+  "F",        # pyflakes 
+  "FBT",      # flake8-boolean-trap
+  "I",        # isort 
+  "ICN",      # flake8-import-conventions
+  "ISC",      # flake8-implicit-str-concat
+  "N",        # pep8-naming
+  "PL",       # Pylint
+  "Q",        # flake8-quotes
+  "RUF",      # Ruff-specific rules
+  "S",        # flake8-bandit
+  "SIM",      # flake8-simplify 
+  "TID",      # flae8-tidy-imports 
+  "UP",       # pyupgrade
+]
+ignore = [
+  "ANN002",   # Missing type annotation for `*args`
+  "ANN003",   # Missing type annotation for `**kwargs`
+  "ANN101",   # missing-type-self
+  "ANN102",   # missing-type-cls
+  "ANN401",   # disallow any-type
+  "B027",     # Allow non-abstract empty methods in abstract base classes 
+  "FBT003",   # Allow boolean pos values in func calls, like `dict.get(... True)`
+  "S105", "S106", "S107", # Ignore checks for possible passwords
+]
+per-file-ignores = {"**/{tests}/*" = [ 
+  # Tests can use magic values, assertions, and relative imports
+  "PLR2004", "S101", "TID252"
+]}
+extend-unsafe-fixes = ["E", "F401"]
+pydocstyle = {convention = "numpy"}
+mccabe = {max-complexity = 7}
+flake8-tidy-imports = {ban-relative-imports = "all"}
+isort = {known-first-party = ["r2seedo", "tests"]}
+pylint = {max-args = 7}
